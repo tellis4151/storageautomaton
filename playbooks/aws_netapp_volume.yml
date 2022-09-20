@@ -1,0 +1,21 @@
+---
+- name: Create NFS Volume on Newly create Working Environment
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  
+
+  tasks:
+  - name: Create 25GB NetApp Volume in Working Environment
+    netapp.cloudmanager.na_cloudmanager_volume:
+      state: present
+      name: "{{ volume_name }}"
+      size: "{{ size }}"
+      size_unit: "{{ size_unit }}"
+      working_environment_name: "{{ name }}"
+      working_environment_id: "{{ working_environment_id }}"
+      client_id: "{{ client_id }}"
+      refresh_token: "{{ refresh_token }}"
+      volume_protocol: nfs
+      snapshot_policy_name: default
+      provider_volume_type: gp2

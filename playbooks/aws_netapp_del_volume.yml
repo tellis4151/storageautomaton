@@ -1,0 +1,15 @@
+---
+- name: Delete NFS Volume on Working Environment
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  
+
+  tasks:
+  - name: Delete Volume on Working Environment
+    netapp.cloudmanager.na_cloudmanager_volume:
+      state: absent
+      name: "{{ volume_name }}"
+      working_environment_name: "{{ working_environment_name }}"
+      client_id: "{{ client_id }}"
+      refresh_token: "{{ refresh_token }}"

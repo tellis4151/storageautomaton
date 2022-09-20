@@ -1,0 +1,14 @@
+---
+- name: Delete NetApp Cloud Manager Working Env
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - name: Delete NetApp AWS FSx
+    netapp.cloudmanager.na_cloudmanager_aws_fsx:
+      state: absent
+      refresh_token: "{{ refresh_token }}"
+      working_environment_id: "{{ working_environment_id  }}"
+      name: "{{ working_environment_name }}"
+      tenant_id: "{{ tenant_id }}"

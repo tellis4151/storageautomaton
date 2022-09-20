@@ -1,0 +1,19 @@
+---
+- name: Create NetApp AWS Connector
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - name: Creating NetApp AWS Connector
+    netapp.cloudmanager.na_cloudmanager_connector_aws:
+      state: present
+      refresh_token: "{{ refresh_token }}"
+      name: "{{ name }}"
+      region: "{{ region }}"
+      subnet_id: "{{ subnet_id }}"
+      account_id: "{{ account_id }}"
+      iam_instance_profile_name: "{{ iam_profile_name }}"
+      security_group_ids: "{{ security_group_ids }}"
+      key_name: "{{ key_name  }}"
+      company: "{{ company }}"

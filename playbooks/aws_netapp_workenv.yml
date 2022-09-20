@@ -1,0 +1,25 @@
+---
+- name: NetApp AWS FSx ONTAP Provisioning
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - name: Creating NetApp AWS FSx Working Environment
+    netapp.cloudmanager.na_cloudmanager_aws_fsx:
+      state: present
+      refresh_token: "{{ refresh_token }}"
+      name: "{{ name }}"
+      region: "{{ region }}"
+      workspace_id: "{{ workspace_id }}"
+      tenant_id: "{{ tenant_id }}"
+      storage_capacity_size: 1
+      storage_capacity_size_unit: TiB
+      aws_credentials_name: "{{ aws_credentials }}"
+      primary_subnet_id: "{{ subnet_id_pri }}"
+      secondary_subnet_id: "{{ subnet_id_sec }}"
+      throughput_capacity: 512
+      fsx_admin_password: {{ fsx_admin_password }}
+      tags: [
+        {tag_key: demo,
+        tag_value: DEMO}]
