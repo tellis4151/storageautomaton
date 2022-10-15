@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   gather_facts: false
-  
+
 
   tasks:
   - name: Delete Volume on Working Environment
@@ -11,5 +11,9 @@
       state: absent
       name: "{{ volume_name }}"
       working_environment_name: "{{ working_environment_name }}"
+      working_environment_id: "{{ working_environment_id }}"
       client_id: "{{ client_id }}"
       refresh_token: "{{ refresh_token }}"
+      svm_name: "{{ svn_name }}"
+      tenant_id: "{{ tenant_id }}"
+

@@ -1,21 +1,26 @@
 ---
-- name: Create NFS Volume on Newly create Working Environment
+- name: Create NFS Volume on AWS FSX ONTP Working Environment
   hosts: localhost
   connection: local
   gather_facts: false
   
 
   tasks:
-  - name: Create 25GB NetApp Volume in Working Environment
+  - name: Create AWS FSX ONTAP Volume
     netapp.cloudmanager.na_cloudmanager_volume:
       state: present
       name: "{{ volume_name }}"
       size: "{{ size }}"
       size_unit: "{{ size_unit }}"
-      working_environment_name: "{{ name }}"
+      working_environment_name: "{{ working_environment_name }}"
       working_environment_id: "{{ working_environment_id }}"
+      tenant_id: "{{ tenant_id }}"
+      export_policy_type: "{{ exp_policy_type }}"
+      export_policy_ip: "{{ exp_policy_id }}"
+      export_policy_nfs_version: "{{ exp_nfs_version }}"
       client_id: "{{ client_id }}"
       refresh_token: "{{ refresh_token }}"
-      volume_protocol: nfs
+      volume_protocol: "{{ protocol }}"
       snapshot_policy_name: default
-      provider_volume_type: gp2
+      provider_volume_type: "{{ volume_type }}"
+

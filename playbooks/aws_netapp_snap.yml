@@ -1,0 +1,25 @@
+---
+- name: Create Snap Mirror between FSX Working environments
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - name: Create AWS FSX ONTAP Snapmirror
+    netapp.cloudmanager.na_cloudmanager_snapmirror:
+      state: present
+      source_working_environment_name: "{{ source_name }}"
+      destination_working_environment_name: "{{ dest_name }}"
+      source_volume_name: "{{ src_vol_name }}"
+      destination_volume_name: "{{ dest_vol_name }}"
+      source_svm_name: "{{ source_svm_name }}"
+      destination_svm_name: "{{ dest_svm_name }}"
+      source_working_environment_id: "{{ source_id }}"
+      destination_working_environment_id: "{{ dest_id }}"
+      policy: "{{ policy }}"
+      schedule: "{{ schedule }}"
+      max_transfer_rate: "{{ transfer_rate }}"
+      client_id: "{{ client_id }}"
+      refresh_token: "{{ refresh_token }}"
+      tenant_id: "{{ tenant_id }}"
+
